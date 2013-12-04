@@ -1,10 +1,60 @@
 :root
-  var-content-bg-color: #fefefe
+  var-content-background: #fefefe
+  var-content-font: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+  var-navbar-background: #2b2b2c
+  var-navbar-color: #fff
 
 body
-  background: var(content-bg-color)
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  background: var(content-background)
+  font-family: var(content-font)
   color: #333
+
+// {{{ navbar
+
+.navbar
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  background: var(navbar-background)
+  padding: 0.5em
+  text-align: right
+  vertical-align: middle
+
+.navbar-item
+  color: var(navbar-color)
+  display: inline-block
+  margin: 0.5em
+  text-decoration: none
+  text-transform: uppercase
+  vertical-align: middle
+
+.navbar-icon
+  background: url(/images/sprite.png) no-repeat
+  display: inline-block
+  margin: 0.16666em
+  height: 23px
+  width: 23px
+  vertical-align: middle
+
+.navbar-icon-logo
+  background-position: -4px 0
+  float: left
+  margin: -0.25em 0.25em 0
+  width: 60px
+  height: 44px
+
+.navbar-icon-twitter
+  background-position: -63px -13px
+
+.navbar-icon-instagram
+  background-position: -87px -13px
+
+.navbar-icon-facebook
+  background-position: -111px -13px
+
+// navbar }}}
 
 .hero-unit
   margin: 50px auto 0 auto

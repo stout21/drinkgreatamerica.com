@@ -7,6 +7,7 @@ html.no-js
     meta(name="description", content="")
     meta(name="viewport", content="width=device-width")
     // build:css(.tmp) styles/main.css
+    link(rel="stylesheet", href="bower_components/normalize-css/normalize.css")
     link(rel="stylesheet", href="styles/main.css")
     // endbuild
     // build:js scripts/vendor/modernizr.js
@@ -16,12 +17,14 @@ html.no-js
     //[if lt IE 10]
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 
-    .hero-unit
-      h1 'Allo, 'Allo!
-      p You now have
-      ul
-        li HTML5 Boilerplate
-        li Modernizr
+    .navbar
+      i.navbar-icon.navbar-icon-logo(aria-label='Great America')
+      a(href='#flavors').navbar-item Flavors
+      a(href='#greatness').navbar-item Find Greatness
+      a(href='https://www.twitter.com/greatamerica', aria-label='Twitter').navbar-icon.navbar-icon-twitter
+      a(href='https://www.instagram.com/greatamerica', aria-label='Instagram').navbar-icon.navbar-icon-instagram
+      a(href='https://www.facebook.com/greatamerica', aria-label='Facebook').navbar-icon.navbar-icon-facebook
+
 
     // build:js scripts/vendor.js
     // bower:js
