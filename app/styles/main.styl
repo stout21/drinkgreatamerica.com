@@ -21,6 +21,7 @@ body
   padding: 0.5em
   text-align: right
   vertical-align: middle
+  z-index: 10
 
 .navbar-item
   color: var(navbar-color)
@@ -55,21 +56,28 @@ body
   background-position: -111px -13px
 
 // navbar }}}
+// {{{ banner
 
-.hero-unit
-  margin: 50px auto 0 auto
-  width: 300px
-  font-size: 18px
-  font-weight: 200
-  line-height: 30px
-  background-color: #eee
-  border-radius: 6px
-  padding: 60px
+.slide
+  position: relative
 
-  h1
-    font-size: 60px
-    line-height: 1
-    letter-spacing: -1px
+.slide-text
+  position: absolute
+  top: 45%
+  left: 5%
+
+.slide-line-1,
+.slide-line-2-1,
+.slide-line-2-2
+  background: rgba(255, 255, 255, 0.9)
+  color: #000
+  display: inline-block
+  font-size: 3em
+  margin: 0.1666em 0
+  padding: 0.1666em 0.333em
+  text-transform: uppercase
+
+// banner }}}
 
 .browsehappy
   margin: 0.2em 0
