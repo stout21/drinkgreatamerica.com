@@ -8,6 +8,7 @@ html.no-js
     meta(name="viewport", content="width=device-width")
     // build:css(.tmp) styles/main.css
     link(rel="stylesheet", href="bower_components/normalize-css/normalize.css")
+    link(rel="stylesheet", href="bower_components/league-gothic/webfonts/stylesheet.css")
     link(rel="stylesheet", href="styles/main.css")
     // endbuild
     // build:js scripts/vendor/modernizr.js
@@ -26,30 +27,27 @@ html.no-js
       a(href='https://www.facebook.com/greatamerica', aria-label='Facebook').navbar-icon.navbar-icon-facebook
 
     section#banner
-      .slide
-        p.slide-text
-          span.slide-line-1 Here&rsquo;s to
-          br
-          span.slide-line-2-1 great
-          span.slide-line-2-2 times
-        img(src='/images/banner-times.jpg')
-      .slide
-        p.slide-text
-          span.slide-line-1 Here&rsquo;s to
-          br
-          span.slide-line-2-1 great
-          span.slide-line-2-2 music
-        img(src='/images/banner-music.jpg')
-      .slide
-        p.slide-text
-          span.slide-line-1 Here&rsquo;s to
-          br
-          span.slide-line-2-1 great
-          span.slide-line-2-2 people
-        img(src='/images/banner-people.jpg')
+      p.slide-text
+        span.slide-line-1 Here&rsquo;s to
+        br
+        span.slide-line-2-1 great
+        span.slide-line-2-2 times
+        span.slide-line-2-2 music
+        span.slide-line-2-2 people
+      img.slide-image(src='/images/banner-times.jpg')
+      img.slide-image(src='/images/banner-music.jpg')
+      img.slide-image(src='/images/banner-people.jpg')
 
     section#flavors
     section#greatness
+    section#responsibility
+    footer#footer
+      p.footer-text Copyright &copy; Great America. All rights reserved.
+      p.footer-text: a(href='mailto:info@drinkgreatamerica.com') Contact Us
+      a(href='https://www.twitter.com/greatamerica', aria-label='Twitter').navbar-icon.navbar-icon-twitter
+      a(href='https://www.instagram.com/greatamerica', aria-label='Instagram').navbar-icon.navbar-icon-instagram
+      a(href='https://www.facebook.com/greatamerica', aria-label='Facebook').navbar-icon.navbar-icon-facebook
+
 
     // build:js scripts/vendor.js
     // bower:js
