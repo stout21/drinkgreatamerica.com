@@ -139,11 +139,12 @@ module.exports = function (grunt) {
       dist: {
         options: {
           compileDebug: false,
-          pretty: false
+          pretty: true
+        },
+        files: {
+          '.tmp/index.html': '<%= yeoman.app %>/index.jade'
         }
       }
-
-
     },
     'bower-install': {
       app: {
@@ -167,14 +168,14 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= yeoman.dist %>'
       },
-      html: '<%= yeoman.app %>/index.html'
+      html: '.tmp/index.html'
     },
     usemin: {
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
       },
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
-            css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
     },
     imagemin: {
       dist: {
@@ -182,7 +183,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-            dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/images'
         }]
       }
     },
@@ -192,45 +193,38 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.svg',
-            dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/images'
         }]
       }
-    },
-    cssmin: {
-      // This task is pre-configured if you do not wish to use Usemin
-      // blocks for your CSS. By default, the Usemin block from your
-      // `index.html` will take care of minification, e.g.
-      //
-      //     <!-- build:css({.tmp,app}) styles/main.css -->
-      //
-      // dist: {
-      //     files: {
-      //         '<%= yeoman.dist %>/styles/main.css': [
-      //             '.tmp/styles/{,*/}*.css',
-      //             '<%= yeoman.app %>/styles/{,*/}*.css'
-      //         ]
-      //     }
-      // }
     },
     htmlmin: {
       dist: {
         options: {
+          collapseWhitespace: true,
           /*removeCommentsFromCDATA: true,
-         // https://github.com/yeoman/grunt-usemin/issues/44
-         //collapseWhitespace: true,
+          // https://github.com/yeoman/grunt-usemin/issues/44
+          //
           collapseBooleanAttributes: true,
           removeAttributeQuotes: true,
           removeRedundantAttributes: true,
           useShortDoctype: true,
           removeEmptyAttributes: true,
           removeOptionalTags: true*/
-       },
-       files: [{
-         expand: true,
-         cwd: '<%= yeoman.app %>',
-         src: '*.html',
-         dest: '<%= yeoman.dist %>'
-       }]
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.app %>',
+            src: '*.html',
+            dest: '<%= yeoman.dist %>'
+          },
+          {
+            expand: true,
+            cwd: '.tmp',
+            src: '*.html',
+            dest: '<%= yeoman.dist %>'
+          }
+        ]
       }
     },
     // Put files not handled in other tasks here
@@ -245,7 +239,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'images/{,*/}*.{webp,gif}',
-          'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*'
           ]
         }]
       },
@@ -262,11 +256,17 @@ module.exports = function (grunt) {
       outputFile: '<%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
       files: [
         '<%= yeoman.dist %>/scripts/{,*/}*.js',
-          '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '!<%= yeoman.dist %>/scripts/vendor/*'
+        '<%= yeoman.dist %>/styles/{,*/}*.css',
+        '!<%= yeoman.dist %>/scripts/vendor/*'
       ],
       uglify: true
     },
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: '**/*'
+    }
   });
 
   grunt.registerTask('serve', function (target) {
@@ -291,16 +291,16 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'jade:dist',
     'useminPrepare',
     'styl',
     'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
+    //'uglify',
     'modernizr',
     'copy:dist',
     'rev',
-    'usemin'
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
