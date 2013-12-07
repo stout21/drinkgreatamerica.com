@@ -227,9 +227,10 @@ body
 
 .tab
   background: var(banner-text-roll-background)
-  display: none
+  opacity: 0
   padding: 1.5em
   position: absolute
+  transition: opacity 0.3s ease-in
 
   h1, h2
     border-bottom: 4px solid #000
@@ -239,11 +240,9 @@ body
     padding: 0 1.5em
     text-transform: uppercase
 
-.tab:target
-  display: block
+.tab--is-active
+  opacity: 1
 
-.tab:target
-  z-index: 1
 
 // flavors }}}
 // {{{ responsibility

@@ -42,7 +42,7 @@ html.no-js
       .tabs
         a.tab-link(href='#flavor-carolina-clear') Carolina Clear
         a.tab-link(href='#flavor-apple-pie') Apple Pie
-        .intro.tab
+        .tab-intro.tab.tab--is-active
           h1 Brewed &amp; Bottled
           p Brewed and bottled in the foothils of the Blue Ridge Mountains here in North Carolina. Great America was born from tradition and raised by a new breed of greatness. This new beverage brings the taste of the past and combines in with a modern attitude to give it a flavor all it&rsquo;s own. What really sets us apart is that the greatness is available for all to enjoy. <a href='#greatness'>Find us</a> in a convenience store or market near you.
         .tab#flavor-carolina-clear
@@ -71,7 +71,6 @@ html.no-js
 
     // build:js scripts/vendor.js
     // bower:js
-    script(src="bower_components/jquery/jquery.js")
     // endbower
     // endbuild
 
@@ -84,5 +83,6 @@ html.no-js
       ga('create','UA-XXXXX-X');ga('send','pageview');
 
     // build:js scripts/main.js
+    script(src="scripts/polyfills.js")
     script(src="scripts/main.js")
     // endbuild
