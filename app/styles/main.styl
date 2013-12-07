@@ -1,8 +1,10 @@
 // {{{ variables
 
 :root
-  var-content-background: #fefefe
-  var-content-font: "Helvetica Neue", Helvetica, Arial, sans-serif
+  var-content-background: url(../images/texture.jpg)
+  var-display-font: 'League Gothic', serif
+  var-content-font: 'Courier', monospace
+  var-icon-eagle: url(../images/eagle.svg) no-repeat
 
   var-navbar-background: #2b2b2c
   var-navbar-color: #fff
@@ -10,6 +12,8 @@
   var-banner-animation-function: cubic-bezier(0.770, 0.010, 0.120, 0.995)
   var-banner-text-background: rgba(255, 255, 255, 0.9)
   var-banner-text-roll-background: rgba(204, 204, 204, 0.9)
+
+  var-responsibility-background: #de9d53
 
 // variables }}}
 // {{{ base
@@ -25,6 +29,16 @@ body
   color: #000
   margin: 0.2em 0
   padding: 0.2em 0
+
+.icon
+  display: inline-block
+
+.eagle
+  background: var(icon-eagle)
+  display: block
+  margin: 0 auto
+  height: 135px
+  width: 149px
 
 // base }}}
 // {{{ navbar
@@ -81,7 +95,7 @@ body
   overflow: hidden
 
 .slide-text
-  font-family: 'League Gothic', serif
+  font-family: var(display-font)
   position: absolute
   top: 35%
   left: 5%
@@ -168,21 +182,41 @@ body
     opacity: 1
 
 // banner }}}
+// {{{ responsibility
+
+#responsibility
+  background: var(responsibility-background)
+  padding: 3em 0
+  text-align: center
+
+  p
+    font-size: 1.16666em
+    span
+      color: #000
+      display: block
+      font-family: var(display-font)
+      font-size: 4em
+      text-transform: uppercase
+
+
+// responsibility }}}
 // {{{ footer
 
 #footer
-  background: rgba(0, 0, 0, 0.8)
+  background: rgba(0, 0, 0, 0.825)
   border-top: 3px solid rgab(0, 0, 0, 0.9)
   padding: 0.5em
   text-align: center
+
+  a
+    color: #fcfcfc
+
 .footer-text
+  color: #fcfcfc
   display: inline-block
   padding-right: 0.5em
   margin-right: 0.5em
-  border-right: 1px solid #fefefe
-
-
-
+  border-right: 1px solid #fcfcfc
 
 // footer }}}
 
