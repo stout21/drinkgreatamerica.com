@@ -7,6 +7,10 @@
   var-navbar-background: #2b2b2c
   var-navbar-color: #fff
 
+  var-banner-animation-function: cubic-bezier(0.770, 0.010, 0.120, 0.995)
+  var-banner-text-background: rgba(255, 255, 255, 0.9)
+  var-banner-text-roll-background: rgba(204, 204, 204, 0.9)
+
 // variables }}}
 // {{{ base
 
@@ -100,49 +104,57 @@ body
 .slide-image
   position: absolute
   top: 0
-  height: 100%
+  min-height: 100%
+  min-width: 100%
 
 .slide-line-2-2
   transform-origin: 50% 50% 57.5px
   transform-style: preserve-3d
-  animation-duration: 6s
+  animation-duration: 9s
   animation-iteration-count: infinite
   animation-name: text-flip
+  animation-timing-function: var(banner-animation-function)
   perspective: 1200
   position: absolute
 
 .slide-line-2-2:nth-child(5)
-  animation-delay: -4s
+  animation-delay: -6s
   transform: translateZ(115px) rotateX(90deg)
 
 .slide-line-2-2:nth-child(6)
-  animation-delay: -2s
+  animation-delay: -3s
   transform: translateZ(115px) rotateX(90deg)
 
 @keyframes text-flip
   0%
+    background: var(banner-text-background)
     transform: translateZ(115px) rotateX(0deg)
   33.33%
+    background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(-90deg)
   33.44%
+    background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(90deg)
   66.66%
+    background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(90deg)
   100%
+    background: var(banner-text-background)
     transform: translateZ(115px) rotateX(0deg)
 
 .slide-image
   animation-direction: alternate
-  animation-duration: 6s
+  animation-duration: 9s
   animation-iteration-count: infinite
   animation-name: image-fade
+  animation-timing-function: var(banner-animation-function)
 
 .slide-image:nth-child(3)
-  animation-delay: 2s
+  animation-delay: -6s
   opacity: 0
 
 .slide-image:nth-child(4)
-  animation-delay: 4s
+  animation-delay: -3s
   opacity: 0
 
 @keyframes image-fade
