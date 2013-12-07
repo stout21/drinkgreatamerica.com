@@ -1,5 +1,7 @@
-(function() {
+(function(FastClick) {
   'use strict';
+
+  FastClick.attach(document.body);
 
   var TAB_IS_ACTIVE = 'tab--is-active';
   document.addEventListener('click', function(e) {
@@ -15,6 +17,4 @@
     }
   })
 
-})();
-
-
+})(window.FastClick);
