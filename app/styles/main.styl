@@ -13,7 +13,10 @@
   var-banner-text-background: rgba(255, 255, 255, 0.9)
   var-banner-text-roll-background: rgba(204, 204, 204, 0.9)
 
-  var-responsibility-background: #de9d53
+  var-flavors-background: url(../images/trees.jpg) no-repeat
+
+  // #de9d53
+  var-responsibility-background: rgba(222, 157, 83, 0.8)
 
 // variables }}}
 // {{{ base
@@ -182,6 +185,67 @@ body
     opacity: 1
 
 // banner }}}
+// {{{ flavors
+
+#flavors
+  position: relative
+  padding: 3em 0
+
+.flavors-background
+  background: var(flavors-background)
+  background-size: cover
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+.tabs,
+.product
+  display: inline-block
+  position: relative
+  vertical-align: top
+  width: 50%
+  z-index: 1
+
+.product-image
+  margin: 0 2.5%
+  opacity: 0.9
+  width: 45%
+
+.tab-link
+  background: var(banner-text-roll-background)
+  color: #000
+  display: inline-block
+  font-family: var(display-font)
+  font-size: 3em
+  margin-right: 0.16666em
+  margin-bottom: 0.16666em
+  padding: 0.16666em 0.3333em
+  text-decoration: none
+  text-transform: uppercase
+
+.tab
+  background: var(banner-text-roll-background)
+  display: none
+  padding: 1.5em
+  position: absolute
+
+  h1, h2
+    border-bottom: 4px solid #000
+    font-family: var(display-font)
+    font-size: 3em
+    margin: 0 1.5em 0 -1.5em
+    padding: 0 1.5em
+    text-transform: uppercase
+
+.tab:target
+  display: block
+
+.tab:target
+  z-index: 1
+
+// flavors }}}
 // {{{ responsibility
 
 #responsibility
