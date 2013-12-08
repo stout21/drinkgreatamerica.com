@@ -188,8 +188,9 @@ body
 // {{{ flavors
 
 #flavors
+  height: 25em
   position: relative
-  padding: 3em 0
+  padding: 3em 5%
 
 .flavors-background
   background: var(flavors-background)
@@ -200,18 +201,21 @@ body
   bottom: 0
   left: 0
 
-.tabs,
-.product
-  display: inline-block
+.tabs
   position: relative
-  vertical-align: top
-  width: 50%
   z-index: 1
 
 .product-image
-  margin: 0 2.5%
   opacity: 0.9
-  width: 45%
+  position: absolute
+  top: 5%
+  width: 22.5%
+  transition: all 0.3s ease-in
+
+.product-apple-pie
+  left: 57%
+.product-carolina-clear
+  left: 79%
 
 .tab-link
   background: var(banner-text-roll-background)
@@ -224,24 +228,36 @@ body
   padding: 0.16666em 0.3333em
   text-decoration: none
   text-transform: uppercase
+  &.tab--is-active
+    background: var(responsibility-background)
+    color: #000
 
-.tab
+.tab-contents
   background: var(banner-text-roll-background)
   opacity: 0
   padding: 1.5em
   position: absolute
+  top: 5em
   transition: opacity 0.3s ease-in
+  width: 50%
 
   h1, h2
     border-bottom: 4px solid #000
+    color: #000
     font-family: var(display-font)
     font-size: 3em
-    margin: 0 1.5em 0 -1.5em
-    padding: 0 1.5em
+    margin: 0 0.75em 0 -0.75em
+    padding: 0 0.75em
     text-transform: uppercase
 
 .tab--is-active
-  opacity: 1
+  .tab-contents
+    opacity: 1
+
+.tab--is-inactive
+  .product-image
+    transform: scale(0.8)
+    opacity: 0.5
 
 
 // flavors }}}

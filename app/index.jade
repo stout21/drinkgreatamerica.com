@@ -40,21 +40,23 @@ html.no-js
 
     section#flavors
       .tabs
-        a.tab-link(href='#flavor-carolina-clear') Carolina Clear
-        a.tab-link(href='#flavor-apple-pie') Apple Pie
-        .tab-intro.tab.tab--is-active
-          h1 Brewed &amp; Bottled
-          p Brewed and bottled in the foothils of the Blue Ridge Mountains here in North Carolina. Great America was born from tradition and raised by a new breed of greatness. This new beverage brings the taste of the past and combines in with a modern attitude to give it a flavor all it&rsquo;s own. What really sets us apart is that the greatness is available for all to enjoy. <a href='#greatness'>Find us</a> in a convenience store or market near you.
+        a.tab-link.tab--is-inactive(href='#flavor-carolina-clear') Carolina Clear
+        a.tab-link.tab--is-inactive(href='#flavor-apple-pie') Apple Pie
+        .tab.tab-intro.tab--is-active
+          .tab-contents
+            h1 Brewed &amp; Bottled
+            p Brewed and bottled in the foothils of the Blue Ridge Mountains here in North Carolina. Great America was born from tradition and raised by a new breed of greatness. This new beverage brings the taste of the past and combines in with a modern attitude to give it a flavor all it&rsquo;s own. What really sets us apart is that the greatness is available for all to enjoy. <a href='#greatness'>Find us</a> in a convenience store or market near you.
         .tab#flavor-carolina-clear
-          h2 Carolina Clear
-          p With its smooth taste, Carolina Clear is as crisp as its original predecessors.
+          img.product-image.product-carolina-clear(src='/images/carolina-clear.png', alt='Carolina Clear beverage')
+          .tab-contents
+            h2 Carolina Clear
+            p With its smooth taste, Carolina Clear is as crisp as its original predecessors.
         .tab#flavor-apple-pie
-          h2 Apple Pie
-          p Nothing says true Americana like Apple Pie.
+          img.product-image.product-apple-pie(src='/images/apple-pie.png', alt='Apple Pie beverage')
+          .tab-contents
+            h2 Apple Pie
+            p Nothing says true Americana like Apple Pie.
 
-      .product
-        img.product-image.product-apple-pie(src='/images/apple-pie.png', alt='Apple Pie beverage')
-        img.product-image.product-carolina-clear(src='/images/carolina-clear.png', alt='Carolina Clear beverage')
       .flavors-background
     section#greatness
     section#responsibility
