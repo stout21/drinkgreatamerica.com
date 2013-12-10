@@ -22,6 +22,9 @@ module.exports = function (grunt) {
       dist: 'dist'
     },
     watch: {
+      options: {
+        spawn: false
+      },
       jade: {
         files: ['<%= yeoman.app %>/{,*/}*.jade'],
         tasks: ['jade:server']
