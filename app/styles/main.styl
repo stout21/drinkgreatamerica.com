@@ -21,6 +21,9 @@
 // variables }}}
 // {{{ base
 
+*
+  box-sizing: border-box
+
 body
   background: var(content-background)
   font-family: var(content-font)
@@ -89,18 +92,24 @@ body
 .navbar-icon-facebook
   background-position: -111px -13px
 
+@media screen and (max-width: 425px)
+  .navbar-item
+    display: none
+
 // navbar }}}
 // {{{ banner
 
 #banner
+  height: 50em
   height: 100vh
   position: relative
   overflow: hidden
 
 .slide-text
   font-family: var(display-font)
+  margin: 0
   position: absolute
-  top: 35%
+  top: 30%
   left: 5%
   z-index: 1
 
@@ -184,11 +193,16 @@ body
   100%
     opacity: 1
 
+@media screen and (max-width: 500px)
+  .slide-text
+    left: -5%
+    top: 20%
+    transform: scale(0.5)
+
 // banner }}}
 // {{{ flavors
 
 #flavors
-  height: 25em
   position: relative
   padding: 3em 5%
 
@@ -205,59 +219,115 @@ body
   position: relative
   z-index: 1
 
-.product-image
-  opacity: 0.9
-  position: absolute
-  top: 5%
-  width: 22.5%
-  transition: all 0.3s ease-in
-
-.product-apple-pie
-  left: 57%
-.product-carolina-clear
-  left: 79%
-
-.tab-link
-  background: var(banner-text-roll-background)
-  color: #000
-  display: inline-block
-  font-family: var(display-font)
-  font-size: 3em
-  margin-right: 0.16666em
-  margin-bottom: 0.16666em
-  padding: 0.16666em 0.3333em
-  text-decoration: none
-  text-transform: uppercase
-  &.tab--is-active
-    background: var(responsibility-background)
-    color: #000
-
 .tab-contents
   background: var(banner-text-roll-background)
-  opacity: 0
-  padding: 1.5em
-  position: absolute
-  top: 5em
-  transition: opacity 0.3s ease-in
+  padding: 0.75em 1.5em
   width: 50%
 
   h1, h2
-    border-bottom: 4px solid #000
     color: #000
     font-family: var(display-font)
     font-size: 3em
-    margin: 0 0.75em 0 -0.75em
-    padding: 0 0.75em
     text-transform: uppercase
 
-.tab--is-active
-  .tab-contents
-    opacity: 1
+@media screen and (min-width: 625px)
+  .tab-link
+    background: var(banner-text-roll-background)
+    color: #000
+    display: inline-block
+    font-family: var(display-font)
+    font-size: 3em
+    margin-right: 0.16666em
+    margin-bottom: 0.16666em
+    padding: 0.16666em 0.3333em
+    text-decoration: none
+    text-transform: uppercase
+    &.tab--is-active
+      background: var(responsibility-background)
+      color: #000
 
-.tab--is-inactive
+  .tab-contents
+    opacity: 0
+    position: absolute
+    top: 5em
+    transition: opacity 0.3s ease-in
+
+  .tab--is-active
+    .tab-contents
+      opacity: 1
+
+  .tab--is-inactive
+    .product-image
+      transform: scale(0.8)
+      opacity: 0.5
+
   .product-image
-    transform: scale(0.8)
-    opacity: 0.5
+    opacity: 0.9
+    position: absolute
+    top: 5%
+    width: 22.5%
+    transition: all 0.3s ease-in
+
+  .product-apple-pie
+    left: 57%
+  .product-carolina-clear
+    left: 79%
+
+@media screen and (max-width: 873px)
+  .tab-link
+    font-size: 2em
+  .tab-contents
+    h1, h2
+      font-size: 2em
+  .tab-contents
+    top: 3.5em
+
+@media screen and (min-width: 501px)
+  .tab-contents
+    h1, h2
+      border-bottom: 4px solid #000
+      margin: 0 0.75em 0 -0.75em
+      padding-left: 0.75em
+
+@media screen and (min-width: 501px) and (max-width: 625px)
+  .tab-link,
+  .tab-intro
+    display: none
+
+  .product-image
+    max-width: 40%
+
+  .tab
+    position: relative
+
+  .tab-contents
+    right: 0
+    position: absolute
+    top: 4.5em
+
+@media screen and (max-width: 500px)
+  .tab-link,
+  .tab-intro,
+  .flavors-background
+    display: none
+
+  #flavors
+    background: #fff
+    overflow: hidden
+    padding: 0
+    text-align: center
+
+  .product-image
+    margin: 1.5em auto
+    max-width: 40%
+
+  .tab-contents
+    background: var(flavors-background) top right
+    padding: 1.5em
+    width: 100%
+    h1, h2
+      font-size: 3em
+      margin: 0
 
 
 // flavors }}}
@@ -277,6 +347,13 @@ body
       font-size: 4em
       text-transform: uppercase
 
+@media screen and (max-width: 500px)
+  #responsibility
+    padding: 3em 1.5em
+    p
+      span
+        font-size: 2em
+        margin-top: 0.5em
 
 // responsibility }}}
 // {{{ footer

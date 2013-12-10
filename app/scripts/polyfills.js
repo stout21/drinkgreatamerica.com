@@ -1,5 +1,6 @@
 // Element::matches polyfill
 (function() {
+
   this.Element && function(ElementPrototype) {
     ElementPrototype.matches = ElementPrototype.matches ||
     ElementPrototype.matchesSelector ||

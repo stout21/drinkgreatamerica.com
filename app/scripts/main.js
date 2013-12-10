@@ -4,6 +4,20 @@
 
   FastClick.attach(document.body);
 
+  // resize  all the things
+
+  var MENU_HEIGHT = 50;
+  var h = window.innerHeight - MENU_HEIGHT;
+  function resize(element) {
+    element.style.minHeight = h + 'px';
+  }
+
+  document.body.addEventListener('resize', function() {
+    h = window.innerHeight - MENU_HEIGHT;
+    $$('section').forEach(resize);
+  });
+
+  $$('section').forEach(resize);
 
   // Hook up the flavors section
 
@@ -35,7 +49,6 @@
         if (el.matches('.' + TAB_IS_ACTIVE)) return;
         el.classList.add(TAB_IS_INACTIVE);
       });
-
     }
   });
 
