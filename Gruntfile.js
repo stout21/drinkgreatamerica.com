@@ -202,19 +202,8 @@ module.exports = function (grunt) {
       }
     },
     htmlmin: {
-      dist: {
-        options: {
-          collapseWhitespace: true,
-          /*removeCommentsFromCDATA: true,
-          // https://github.com/yeoman/grunt-usemin/issues/44
-          //
-          collapseBooleanAttributes: true,
-          removeAttributeQuotes: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true*/
-        },
+      fake: {
+        options: {},
         files: [
           {
             expand: true,
@@ -229,10 +218,29 @@ module.exports = function (grunt) {
             dest: '<%= yeoman.dist %>'
           }
         ]
+      },
+      dist: {
+        options: {
+          collapseWhitespace: true,
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.dist %>',
+            src: '*.html',
+            dest: '<%= yeoman.dist %>'
+          }
+        ]
       }
     },
     // Put files not handled in other tasks here
     copy: {
+      'bower-prebuild': {
+        files: {
+          '.tmp/bower_components/normalize-css/normalize.css': 'app/bower_components/normalize-css/normalize.css',
+          '.tmp/bower_components/league-gothic/webfonts/stylesheet.css': 'app/bower_components/league-gothic/webfonts/stylesheet.css'
+        }
+      },
       dist: {
         files: [{
           expand: true,
@@ -242,8 +250,19 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'images/{,*/}*.{webp,gif}',
+            'images/{,*/}*.{webp,gif,jpg,png}',
             'styles/fonts/{,*/}*.*'
+          ]
+        }]
+      },
+      assets: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '.tmp/concat',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            '{,*/}*/*.*',
           ]
         }]
       },
@@ -253,6 +272,13 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      'league-gothic': {
+        expand: true,
+        dot: true,
+        cwd: '<%= yeoman.app %>/bower_components/league-gothic/webfonts/',
+        dest: 'dist/styles/',
+        src: '*.{woff,eot,ttf,svg}'
       }
     },
     modernizr: {
@@ -270,6 +296,13 @@ module.exports = function (grunt) {
         base: 'dist'
       },
       src: '**/*'
+    },
+    'ftp-deploy': {
+      deploy: {
+        src: 'dist',
+        dest: '/',
+        exclusions: []
+      }
     }
   });
 
@@ -295,20 +328,29 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'copy:bower-prebuild',
     'jade:dist',
     'useminPrepare',
     'styl',
     'autoprefixer',
+    'concat',
     //'uglify',
     'modernizr',
     'copy:dist',
     'rev',
+    'svgmin',
+    'htmlmin:fake',
+    'copy:assets',
+    'copy:league-gothic',
     'usemin',
-    'htmlmin'
+    'htmlmin:dist',
+    //'cssmin',
   ]);
 
   grunt.registerTask('default', [
     'jshint',
     'build'
   ]);
+
+  grunt.registerTask('noop', ['Empty commit to measure grunt setup time'], function() {});
 };
