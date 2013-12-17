@@ -299,8 +299,13 @@ module.exports = function (grunt) {
     },
     'ftp-deploy': {
       deploy: {
+        auth: {
+          host: 'drinkgreatamerica.com',
+          port: 21,
+          authKey: 'ftp'
+        },
         src: 'dist',
-        dest: '/',
+        dest: '',
         exclusions: []
       }
     }
@@ -345,6 +350,11 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin:dist',
     //'cssmin',
+  ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    'ftp-deploy'
   ]);
 
   grunt.registerTask('default', [
