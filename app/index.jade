@@ -10,6 +10,24 @@ html.no-js
     link(rel="stylesheet", href="bower_components/league-gothic/webfonts/stylesheet.css")
     link(rel="stylesheet", href="bower_components/normalize-css/normalize.css")
     link(rel="stylesheet", href="styles/main.css")
+    script.
+      (function(w,d,s){
+        w._s=function(a,t,e){
+          t=d.getElementsByTagName(s)[0];
+          e=d.createElement(s);
+          e.src=a;
+          t.parentNode.insertBefore(e,t);
+          return e;
+        };
+      })(window,document,'script');
+
+      (function(w,z,s) {
+        s=w._s('scripts/locations.js');
+        w.__jsonp = function a(r) {
+          (z = w['setupFinder']) && !z ? setTimeout(function() { a(data) }) : (delete w.__jsonp, s.parentNode.removeChild(s), z(r));
+        };
+      })(window);
+
     // endbuild
     // build:js scripts/vendor/modernizr.js
     <script src="bower_components/modernizr/modernizr.js"></script>
@@ -58,7 +76,11 @@ html.no-js
             p Nothing says true Americana like Apple Pie.
 
       .flavors-background
+
     section#greatness
+      #map-canvas
+      #map-locations
+
     section#responsibility
       span.eagle
       p Please remember to always <span>think and drink responsibly</span>
@@ -70,13 +92,7 @@ html.no-js
       a(href='https://www.instagram.com/greatamerica', aria-label='Instagram').navbar-icon.navbar-icon-instagram
       a(href='https://www.facebook.com/greatamerica', aria-label='Facebook').navbar-icon.navbar-icon-facebook
 
-
-    // build:js(app) scripts/vendor.js
-    // bower:js
-    // endbower
-    // endbuild
-
-    script.
+    script
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
@@ -88,4 +104,5 @@ html.no-js
     script(src="bower_components/fastclick/lib/fastclick.js")
     script(src="scripts/polyfills.js")
     script(src="scripts/main.js")
+    script(src="scripts/map.js")
     // endbuild

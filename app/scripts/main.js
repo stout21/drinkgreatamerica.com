@@ -1,4 +1,4 @@
-(function(document, FastClick) {
+(function(exports, document, FastClick) {
 
   'use strict';
 
@@ -14,10 +14,19 @@
 
   document.body.addEventListener('resize', function() {
     h = window.innerHeight - MENU_HEIGHT;
-    $$('section').forEach(resize);
+    resizeSections();
   });
 
-  $$('section').forEach(resize);
+  function resizeSections() {
+    $$('section').forEach(resize);
+    resize($('#map-canvas'));
+    var l = $('#map-locations')
+    resize(l);
+    l.style.height = l.style.minHeight;
+  }
+
+  resizeSections();
+
 
   // Hook up the flavors section
 
@@ -52,8 +61,6 @@
     }
   });
 
-  // jQueryLite yo.
-
   function $(selector, ctx) {
     if (selector[0] === '#') return document.getElementById(selector.substr(1));
     return (ctx || document).querySelector(selector);
@@ -67,4 +74,5 @@
     return Array.prototype.slice.call(like, 0);
   }
 
-})(document, window.FastClick);
+
+})(window, document, window.FastClick);

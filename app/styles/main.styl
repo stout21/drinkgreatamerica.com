@@ -331,6 +331,44 @@ body
 
 
 // flavors }}}
+// {{{ find greatness
+
+.info-window
+  height: 80px
+
+.info-address
+  display: block
+
+#map-canvas
+  display: inline-block
+  height: 100%
+  width: 75%
+
+#map-locations
+  display: inline-block
+  overflow: scroll
+  width: 25%
+
+.location
+  font-size: 0.91666em
+  padding: 0.5em
+  background: rgba(222, 157, 83, 0.4)
+  border-bottom: 1px solid rgb(222, 157, 83)
+
+  &:nth-child(odd)
+    background: rgba(222, 157, 83, 0.6)
+
+  h3
+    margin-top: 0
+
+.location--isActive
+  background: rgb(222, 157, 83)
+
+@media screen and (max-width: 500px)
+  #map-canvas
+    width: 100%
+
+// find greatness }}}
 // {{{ responsibility
 
 #responsibility
