@@ -1,0 +1,83 @@
+#!/usr/local/bin/node
+
+var exec = require('child_process').exec;
+var geocoder = require('node-geocoder').getGeocoder('openstreetmap');
+var Q = require('Q');
+var fs = require('fs');
+var path = require('path');
+
+exec('python ./scripts/distro/csvtojson.py', function(stderr, stdout) {
+  var obj = JSON.parse(stdout);
+  console.log('Parsed file to json');
+  obj.length = 14;
+
+  var promises = obj.map(function(o) {
+    o.state = 'FL';
+    delete o.DELETE;
+
+    var deferred = Q.defer();
+
+    geocoder.geocode('address city state'.split(' ').map(get(o)).join(' '), function(err, data) {
+      if (err) {
+        console.warn('Geocoding failed.', err);
+        return deferred.reject(err);
+      }
+
+      if (typeof data[0] === 'undefined') {
+        return deferred.reject({ message: 'No lat/long data' });
+      }
+
+      deferred.resolve({
+        lat: data[0].latitude,
+        long: data[0].longitude,
+        zip: data[0].zipcode
+      });
+    });
+
+    return deferred.promise;
+  });
+
+  console.log('Created geocode promises for %s locations', obj.length);
+
+  Q.allSettled(promises)
+    .then(function (results) {
+      process.stdout.write('All ' + results.length + ' promises resolved');
+
+      results.forEach(function (result, i) {
+        if (i !== 0 && i % 5 === 0) process.stdout.write('  Resolved ' + i + ' promises');
+
+        if (result.state === 'rejected') 
+          merge(obj[i], { lat: null, long: null });
+        else
+          merge(obj[i], result.value);
+      });
+
+      var location = path.join(__dirname, '..', 'app/scripts/locations.js');
+      var friendlyLocation = location.split(path.join(__dirname, '..'))[1];
+      fs.writeFile(location, '__jsonp(' + JSON.stringify(obj) + ')', function() {
+        process.stdout.write('Saved result to ' + friendlyLocation);
+      });
+    });
+
+  function get(obj) {
+    return function(prop) {
+      return obj[prop];
+    };
+  }
+});
+
+
+function merge() {
+  var objs = Array.prototype.slice.call(arguments, 0);
+  var dest = objs.shift();
+  var i = 0;
+
+  objs.forEach(function(obj) {
+    Object.keys(obj).forEach(function(key) {
+      if (typeof dest[key] === 'undefined')
+        dest[key] = obj[key];
+    });
+  });
+
+  return dest;
+}
