@@ -9,7 +9,6 @@ var path = require('path');
 exec('python ./scripts/distro/csvtojson.py', function(stderr, stdout) {
   var obj = JSON.parse(stdout);
   console.log('Parsed file to json');
-  obj.length = 14;
 
   var promises = obj.map(function(o) {
     o.state = 'FL';
@@ -46,7 +45,7 @@ exec('python ./scripts/distro/csvtojson.py', function(stderr, stdout) {
       results.forEach(function (result, i) {
         if (i !== 0 && i % 5 === 0) process.stdout.write('  Resolved ' + i + ' promises');
 
-        if (result.state === 'rejected') 
+        if (result.state === 'rejected')
           merge(obj[i], { lat: null, long: null });
         else
           merge(obj[i], result.value);

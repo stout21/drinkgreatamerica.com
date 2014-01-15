@@ -19,14 +19,26 @@
 
   function resizeSections() {
     $$('section').forEach(resize);
-    resize($('#map-canvas'));
-    var l = $('#map-locations')
-    resize(l);
-    l.style.height = l.style.minHeight;
+    var g = $('#greatness');
+    var c = $('#map-canvas');
+    var l = $('#map-locations-list')
+    g.style.minHeight =
+    g.style.height =
+    c.style.minHeight =
+    c.style.height =
+      h * 0.75 + 'px';
+
+    l.style.minHeight =
+    l.style.height =
+      (h * 0.75) - 38 + 'px'; // subtract the input height
   }
 
   resizeSections();
 
+  document.body.addEventListener('ready', function ready(e) {
+    resizeSections();
+    document.body.removeEventListener('ready', ready);
+  }, false);
 
   // Hook up the flavors section
 
@@ -74,5 +86,7 @@
     return Array.prototype.slice.call(like, 0);
   }
 
+  exports.$ = $;
+  exports.$$ = $$;
 
 })(window, document, window.FastClick);

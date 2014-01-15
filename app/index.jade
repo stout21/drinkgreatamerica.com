@@ -1,4 +1,4 @@
-!!!
+doctype html
 html.no-js
   head
     meta(charset="utf-8")
@@ -30,7 +30,7 @@ html.no-js
 
     // endbuild
     // build:js scripts/vendor/modernizr.js
-    <script src="bower_components/modernizr/modernizr.js"></script>
+    script(src="bower_components/modernizr/modernizr.js")
     // endbuild
   body
     //[if lt IE 10]
@@ -78,8 +78,11 @@ html.no-js
       .flavors-background
 
     section#greatness
+      h1 Find Greatness
       #map-canvas
       #map-locations
+        input(id='filter-locations' placeholder='Filter')
+        #map-locations-list
 
     section#responsibility
       span.eagle
@@ -92,7 +95,7 @@ html.no-js
       a(href='https://www.instagram.com/greatamerica', aria-label='Instagram').navbar-icon.navbar-icon-instagram
       a(href='https://www.facebook.com/greatamerica', aria-label='Facebook').navbar-icon.navbar-icon-facebook
 
-    script
+    script.
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];

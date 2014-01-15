@@ -49,8 +49,14 @@
     console.log('Creating new MapManager. %o', locations);
 
     this._template = {};
+    this._locations = locations;
     this.locations = locations;
-    this.locationsElement = document.getElementById('map-locations');
+    this.searchElement = $('#filter-locations');
+    this.locationsElement = $('#map-locations-list');
+    var _this = this;
+    this.searchElement.addEventListener('keyup', function() {
+      _this.filter.apply(_this, arguments);
+    }, false);
 
     this.map = new google.maps.Map(document.getElementById('map-canvas'), {
       zoom: 8,
@@ -70,16 +76,15 @@
       var self = this;
       var map = this.map;
       this.locations.forEach(draw);
-      var str = this.render(MapManager.LOCATIONS_LIST, this.locations);
-      this.locationsElement.innerHTML = str;
+      this.filter({ target: this.searchElement });
 
       return this;
 
-      function draw(loc) {
+      function draw(loc, i) {
         loc.marker = new google.maps.Marker({
           position: new google.maps.LatLng(loc.lat, loc.long),
-          map: map,
-          title: loc.store
+          title: loc.store,
+          map: map
         });
 
         loc._id = 'location-' + Math.floor(Math.random() * 100000);
@@ -92,6 +97,46 @@
           self.select(loc);
         };
       }
+    },
+
+    filter: function(e) {
+      var _this = this;
+      var map = this.map;
+      var query = new RegExp(e.target.value, 'ig');
+      var keys = 'store address city state zip'.split(' ');
+
+      // TODO: Maybe make this smarter
+      this.locations = this._locations.filter(function(location) {
+        var i = keys.length, prop;
+        while (i--)
+          if ((prop = location[keys[i]]) && prop.match(query))
+            return location;
+      });// TODO .sort() by relevance;
+
+      // Sync up those markers
+      this._locations.forEach(function(location, i) {
+        if (_this.locations.indexOf(location) === -1)
+          return location.marker.setMap(null);
+
+        if (location.marker.getMap() === null) {
+          setTimeout(animateIn(location), i * 16);
+        }
+      });
+
+      function animateIn(location) {
+        return function() {
+          location.marker.setMap(map);
+          location.marker.setAnimation(google.maps.Animation.DROP);
+        };
+      };
+
+      var str = [
+        '<div id="location-results-count">',
+          '<span class="count">', this.locations.length, '</span>',
+          '<span class="total">', this._locations.length, '</span>',
+        '</div>'
+      ].join('') + this.render(MapManager.LOCATIONS_LIST, this.locations);
+      this.locationsElement.innerHTML = str;
     },
 
     select: function(location) {
@@ -116,12 +161,13 @@
       var t = this.template(name);
       if (t) return t(data);
     },
-  }
+  };
 
   _s('https://maps.googleapis.com/maps/api/js?key=AIzaSyAYI-vxBWEH1OlMjj2Ryx2A_oRe3M6jQcE&sensor=true&callback=' + MAIN);
 
   exports[MAIN] = initialize;
   exports[SETUP] = setup;
+
 
 })(window, document);
 

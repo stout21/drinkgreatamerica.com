@@ -339,6 +339,22 @@ body
 .info-address
   display: block
 
+#greatness
+  position: relative
+  h1
+    position: absolute
+    left: 5%
+    top: 0.5em
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    display: inline-block;
+    font-family: 'League Gothic', serif
+    font-size: 4em;
+    font-weight: normal;
+    margin: 0.0888em 0;
+    padding: 0 10px;
+    text-transform: uppercase;
+
 #map-canvas
   display: inline-block
   height: 100%
@@ -346,14 +362,32 @@ body
 
 #map-locations
   display: inline-block
-  overflow: scroll
   width: 25%
+
+  input
+    padding: 0.5em 1.5em 0.5em 0.333em
+    width: 100%
+
+#location-results-count
+  position: absolute
+  top: 0.825em
+  right: 0.5em
+  font-size: 0.75em
+  .count
+    color: #666
+    &:after
+      content: ' / '
+  .total
+    color: #aaa
+
+#map-locations-list
+  overflow-y: scroll
+  background: rgba(222, 157, 83, 0.4)
 
 .location
   font-size: 0.91666em
   padding: 0.5em
-  background: rgba(222, 157, 83, 0.4)
-  border-bottom: 1px solid rgb(222, 157, 83)
+  border-top: 1px solid rgb(222, 157, 83)
 
   &:nth-child(odd)
     background: rgba(222, 157, 83, 0.6)
