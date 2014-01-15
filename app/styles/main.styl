@@ -13,6 +13,9 @@
   var-banner-text-background: rgba(255, 255, 255, 0.9)
   var-banner-text-roll-background: rgba(204, 204, 204, 0.9)
 
+  var-message-error-color: #fff
+  var-message-error-background: rgba(209, 58, 52, 0.82)
+
   var-flavors-background: url(/images/trees.jpg) no-repeat
 
   // #de9d53
@@ -45,6 +48,25 @@ body
   margin: 0 auto
   height: 135px
   width: 149px
+
+.msg
+  display: block
+  padding: 1.333em 0.666em
+
+.msg-error
+  color: var(message-error-color)
+  background: var(message-error-background)
+
+.btn
+  -webkit-appearance: none
+  display: inline-block
+  border: 0
+  background: var(banner-text-background)
+  padding: 0.333em 0.66em
+  margin: 0 0.1666em
+  &:focus,
+  &:hover
+    background: var(banner-text-roll-background)
 
 // base }}}
 // {{{ navbar
@@ -200,6 +222,50 @@ body
     transform: scale(0.5)
 
 // banner }}}
+// {{{ responsibility
+
+.age-not-verified
+  overflow: hidden
+
+#how-old-you-be
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background-image: url(/images/trees.jpg)
+  background-size: cover
+  z-index: 100
+  text-align: center
+  padding: 3em 0
+  p
+    background: var(banner-text-background)
+    margin: 1.5em auto
+    max-width: 22em
+    padding: 1.333em 0.666em
+    width: 50%
+  p, .btn
+    position: relative
+    z-index: 10
+
+  .msg-error
+    color: var(message-error-color)
+    background: var(message-error-background)
+
+  .age-product-image
+    position: absolute
+    bottom: -20%
+    left: -10%
+    transform: rotate(-22.5deg)
+    z-index: 0
+
+@media screen and (max-width: 500px)
+  //#how-old-you-be
+  .age-product-image
+    display: none
+
+
+// responsibility }}}
 // {{{ flavors
 
 #flavors

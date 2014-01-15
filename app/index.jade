@@ -1,5 +1,5 @@
 doctype html
-html.no-js
+html
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
@@ -32,9 +32,15 @@ html.no-js
     // build:js scripts/vendor/modernizr.js
     script(src="bower_components/modernizr/modernizr.js")
     // endbuild
-  body
+  body.age-not-verified
     //[if lt IE 10]
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    section#how-old-you-be
+      span.eagle
+      p You must be 21 years of age or older to access this site.
+      button.btn.btn-confirm Yes, I am
+      button.btn.btn-nope No, I am not
+      img.age-product-image(src='/images/carolina-clear.png', alt='Carolina Clear beverage')
 
     .navbar
       i.navbar-icon.navbar-icon-logo(aria-label='Great America')

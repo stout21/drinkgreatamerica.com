@@ -4,6 +4,39 @@
 
   FastClick.attach(document.body);
 
+  // set up age verification management
+  if (+sessionStorage.oldEnough === 1)
+    removeAgeVerification();
+  else
+    document.body.addEventListener('click', function ageVerification(e) {
+      if (e.target.matches('.btn-confirm')) {
+        document.body.removeEventListener('click', ageVerification);
+        removeAgeVerification();
+      }
+      if (e.target.matches('.btn-nope')) {
+        var parent = $('#how-old-you-be');
+        var child = parent.querySelector('p');
+        var element = document.createElement('p');
+        element.className = 'msg msg-error';
+        element.textContent = 'Sorry, you must be at least 21 years of age to view this site.';
+        parent.insertBefore(element, child.nextSibling);
+
+      }
+    }, false);
+
+  function removeAgeVerification() {
+    var LENGTH = 300;
+    var node = $('#how-old-you-be');
+    sessionStorage.oldEnough = 1;
+    node.style.opacity = 0;
+    node.style.transition = LENGTH + 'ms opacity ease-in';
+    setTimeout(function() {
+      node.parentNode.removeChild(node);
+    }, LENGTH);
+
+    document.body.className = '';
+  }
+
   // resize  all the things
 
   var MENU_HEIGHT = 50;
@@ -18,7 +51,7 @@
   });
 
   function resizeSections() {
-    $$('section').forEach(resize);
+    $$('section:not(#responsibility)').forEach(resize);
     var g = $('#greatness');
     var c = $('#map-canvas');
     var l = $('#map-locations-list')
