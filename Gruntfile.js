@@ -344,7 +344,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     //'uglify',
-    'modernizr',
+    //'modernizr',
     'copy:dist',
     'rev',
     'svgmin',
