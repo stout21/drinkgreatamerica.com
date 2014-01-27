@@ -131,14 +131,8 @@ module.exports = function (grunt) {
     },
     jade: {
       options: {
-
+        pretty: false
       },
-      //files: [{
-        //expand: true,
-        //cwd: '<%= yeoman.app %>',
-        //src: '{,*/}*.jade',
-        //dest: '.tmp'
-      //}],
       server: {
         files: {
           '.tmp/index.html': '<%= yeoman.app %>/index.jade'
@@ -255,9 +249,14 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'images/{,*/}*.{webp,gif,jpg,png}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
           ]
         }]
+      },
+      locations: {
+        files: {
+          'dist/scripts/locations.js': 'app/scripts/locations.js'
+        }
       },
       assets: {
         files: [{
@@ -354,6 +353,7 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin:dist',
     //'cssmin',
+    'copy:locations',
   ]);
 
   grunt.registerTask('deploy', [
