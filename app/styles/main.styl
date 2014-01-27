@@ -137,7 +137,8 @@ body
 
 .slide-line-1,
 .slide-line-2-1,
-.slide-line-2-2
+.slide-line-2-2,
+.slide-line-3-1
   background: rgba(255, 255, 255, 0.9)
   color: #000
   display: inline-block
@@ -158,7 +159,7 @@ body
 .slide-line-2-2
   transform-origin: 50% 50% 57.5px
   transform-style: preserve-3d
-  animation-duration: 9s
+  animation-duration: 12s
   animation-iteration-count: infinite
   animation-name: text-flip
   animation-timing-function: var(banner-animation-function)
@@ -166,24 +167,58 @@ body
   position: absolute
 
 .slide-line-2-2:nth-child(5)
-  animation-delay: -6s
+  animation-delay: -9s
   transform: translateZ(115px) rotateX(90deg)
 
 .slide-line-2-2:nth-child(6)
+  animation-delay: -6s
+  transform: translateZ(115px) rotateX(90deg)
+
+.slide-line-2-2:nth-child(7)
   animation-delay: -3s
   transform: translateZ(115px) rotateX(90deg)
+
+.slide-line-3-1
+  position: absolute
+  top: 4.25em
+  width: 300%
+  font-size: 3em
+  margin: 0.16666em 0
+  left: 0
+  animation-duration: 12s
+  animation-iteration-count: infinite
+  animation-name: the-people
+  animation-delay: -13s
+
+@keyframes the-people
+  0%
+    opacity: 0
+  65%
+    opacity: 0
+    transform: translateY(1em)
+  75%
+    opacity: 1
+    transform: translateY(0em)
+  97.5%
+    opacity: 1
+    transform: translateY(0em)
+  100%
+    opacity: 0
+    transform: translateY(1em)
+
+
 
 @keyframes text-flip
   0%
     background: var(banner-text-background)
     transform: translateZ(115px) rotateX(0deg)
-  33.33%
+  25%
     background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(-90deg)
-  33.44%
+  25.01%
     background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(90deg)
-  66.66%
+  75%
     background: var(banner-text-roll-background)
     transform: translateZ(115px) rotateX(90deg)
   100%
@@ -192,25 +227,29 @@ body
 
 .slide-image
   animation-direction: alternate
-  animation-duration: 9s
+  animation-duration: 12s
   animation-iteration-count: infinite
   animation-name: image-fade
   animation-timing-function: var(banner-animation-function)
 
 .slide-image:nth-child(3)
-  animation-delay: -6s
+  animation-delay: -9s
   opacity: 0
 
 .slide-image:nth-child(4)
+  animation-delay: -6s
+  opacity: 0
+
+.slide-image:nth-child(5)
   animation-delay: -3s
   opacity: 0
 
 @keyframes image-fade
   0%
     opacity: 1
-  33.33%
+  25%
     opacity: 0
-  66.66%
+  50%
     opacity: 0
   100%
     opacity: 1

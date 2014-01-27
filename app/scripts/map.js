@@ -46,7 +46,7 @@
   }
 
   function MapManager(locations) {
-    console.log('Creating new MapManager. %o', locations);
+    //console.log('Creating new MapManager. %o', locations);
 
     this._template = {};
     this._locations = locations;
