@@ -2,6 +2,8 @@
 
   'use strict';
 
+  var MAP_HEIGHT = 0.65;
+
   FastClick.attach(document.body);
 
   // set up age verification management
@@ -20,7 +22,6 @@
         element.className = 'msg msg-error';
         element.textContent = 'Sorry, you must be at least 21 years of age to view this site.';
         parent.insertBefore(element, child.nextSibling);
-
       }
     }, false);
 
@@ -54,16 +55,16 @@
     $$('section:not(#responsibility)').forEach(resize);
     var g = $('#greatness');
     var c = $('#map-canvas');
-    var l = $('#map-locations-list')
+    var l = $('#map-locations-list');
     g.style.minHeight =
     g.style.height =
     c.style.minHeight =
     c.style.height =
-      h * 0.75 + 'px';
+      h * MAP_HEIGHT + 'px';
 
     l.style.minHeight =
     l.style.height =
-      (h * 0.75) - 38 + 'px'; // subtract the input height
+      (h * MAP_HEIGHT) - 38 + 'px'; // subtract the input height
   }
 
   resizeSections();
