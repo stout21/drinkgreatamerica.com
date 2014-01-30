@@ -1,3 +1,4 @@
+/*global $:false, google:false*/
 (function(exports, document) {
   'use strict';
 
@@ -13,26 +14,30 @@
     mapManager = new MapManager(locations);
     mapManager.template(MapManager.INFO_WINDOW, function(data) {
       return [
+        /*jshint ignore:start*/
         '<article class="info-window">',
           '<h3 class="info-store">', data.store, '</h3>',
           '<span class="info-address">', data.address, '</span>',
-          '<span class="info-city">', data.city, '</span>,',
+          '<span class="info-city">', data.city, '</span>, ',
           '<span class="info-state">', data.state, '</span> ',
           '<span class="info-zip">', data.zip, '</span>',
         '</article>'
+        /*jshint ignore:end*/
       ].join('');
     });
 
     mapManager.template(MapManager.LOCATIONS_LIST, function(data) {
       return data.map(function(loc) {
         return [
+          /*jshint ignore:start*/
           '<div class="location" data-id="', loc._id , '">',
             '<h3 class="location-store">', loc.store, '</h3>',
             '<span class="location-address">', loc.address, '</span>',
-            '<span class="location-city">', loc.city, '</span>,',
+            '<span class="location-city">', loc.city, '</span>, ',
             '<span class="location-state">', loc.state, '</span> ',
             '<span class="location-zip">', loc.zip, '</span>',
           '</div>',
+          /*jshint ignore:end*/
         ].join('');
       }).join('');
     });
@@ -167,7 +172,6 @@
 
   exports[MAIN] = initialize;
   exports[SETUP] = setup;
-
 
 })(window, document);
 
