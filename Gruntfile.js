@@ -105,7 +105,7 @@ module.exports = function (grunt) {
     styl: {
       options: {
         whitespace: true,
-        compress: true,
+        compress: false,
         configure: function (styl) {
           styl.use(reworkVars());
         }
@@ -344,7 +344,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     //'uglify',
-    'modernizr',
+    //'modernizr',
     'copy:dist',
     'rev',
     'svgmin',
