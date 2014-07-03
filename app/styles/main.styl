@@ -162,20 +162,20 @@ body
   animation-duration: 12s
   animation-iteration-count: infinite
   animation-name: text-flip
-  animation-timing-function: var(banner-animation-function)
+  animation-timing-function: linear
   perspective: 1200
   position: absolute
 
 .slide-line-2-2:nth-child(5)
-  animation-delay: -9s
+  animation-delay: 3s
   transform: translateZ(115px) rotateX(90deg)
 
 .slide-line-2-2:nth-child(6)
-  animation-delay: -6s
+  animation-delay: 6s
   transform: translateZ(115px) rotateX(90deg)
 
 .slide-line-2-2:nth-child(7)
-  animation-delay: -3s
+  animation-delay: 9s
   transform: translateZ(115px) rotateX(90deg)
 
 .slide-line-3-1
@@ -188,15 +188,15 @@ body
   animation-duration: 12s
   animation-iteration-count: infinite
   animation-name: the-people
-  animation-delay: -13s
 
 @keyframes the-people
   0%
     opacity: 0
-  65%
+    transform: translateY(1em)
+  87.5%
     opacity: 0
     transform: translateY(1em)
-  75%
+  90%
     opacity: 1
     transform: translateY(0em)
   97.5%
@@ -206,53 +206,50 @@ body
     opacity: 0
     transform: translateY(1em)
 
-
-
 @keyframes text-flip
   0%
+    background: var(banner-text-roll-background)
+    transform: translateZ(115px) rotateX(90deg)
+  5%
     background: var(banner-text-background)
     transform: translateZ(115px) rotateX(0deg)
   25%
-    background: var(banner-text-roll-background)
-    transform: translateZ(115px) rotateX(-90deg)
-  25.01%
-    background: var(banner-text-roll-background)
-    transform: translateZ(115px) rotateX(90deg)
-  75%
-    background: var(banner-text-roll-background)
-    transform: translateZ(115px) rotateX(90deg)
-  100%
     background: var(banner-text-background)
     transform: translateZ(115px) rotateX(0deg)
-
+  30%
+    background: var(banner-text-roll-background)
+    transform: translateZ(115px) rotateX(-90deg)
+  100%
+    background: var(banner-text-roll-background)
+    transform: translateZ(115px) rotateX(-90deg)
+  
 .slide-image
-  animation-direction: alternate
   animation-duration: 12s
   animation-iteration-count: infinite
   animation-name: image-fade
-  animation-timing-function: var(banner-animation-function)
+  animation-timing-function: linear
+  opacity: 0
 
 .slide-image:nth-child(3)
-  animation-delay: -9s
-  opacity: 0
+  animation-delay: 3s
 
 .slide-image:nth-child(4)
-  animation-delay: -6s
-  opacity: 0
+  animation-delay: 6s
 
 .slide-image:nth-child(5)
-  animation-delay: -3s
-  opacity: 0
+  animation-delay: 9s
 
 @keyframes image-fade
   0%
+    opacity: 0
+  5%
     opacity: 1
   25%
-    opacity: 0
-  50%
+    opacity: 1
+  30%
     opacity: 0
   100%
-    opacity: 1
+    opacity: 0
 
 @media screen and (max-width: 500px)
   .slide-text
@@ -370,13 +367,17 @@ body
     opacity: 0.9
     position: absolute
     top: 5%
-    width: 22.5%
+    width: 12%
     transition: all 0.3s ease-in
 
-  .product-apple-pie
-    left: 57%
   .product-carolina-clear
-    left: 79%
+    left: 54%
+  .product-apple-pie
+    left: 64.5%
+  .product-peach
+    left: 79% 
+  .product-strawberry
+    left: 90.5%
 
 @media screen and (max-width: 873px)
   .tab-link

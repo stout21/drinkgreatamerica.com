@@ -37,7 +37,7 @@ html
       p You must be 21 years of age or older to access this site.
       button.btn.btn-confirm Yes, I am
       button.btn.btn-nope No, I am not
-      img.age-product-image(src='/images/carolina-clear.png', alt='Carolina Clear beverage')
+      //- img.age-product-image(src='/images/carolina-clear.png', alt='Carolina Clear beverage')
 
     .navbar
       i.navbar-icon.navbar-icon-logo(aria-label='Great America')
@@ -66,6 +66,8 @@ html
       .tabs
         a.tab-link.tab--is-inactive(href='#flavor-carolina-clear') Carolina Clear
         a.tab-link.tab--is-inactive(href='#flavor-apple-pie') Apple Pie
+        a.tab-link.tab--is-inactive(href='#flavor-peach') Peach
+        a.tab-link.tab--is-inactive(href='#flavor-strawberry') Strawberry
         .tab.tab-intro.tab--is-active
           .tab-contents
             h1 Brewed &amp; Bottled
@@ -79,6 +81,16 @@ html
           img.product-image.product-apple-pie(src='/images/apple-pie.png', alt='Apple Pie beverage')
           .tab-contents
             h2 Apple Pie
+            p Nothing says true Americana like Apple Pie.
+        .tab#flavor-peach
+          img.product-image.product-peach(src='/images/peach.png', alt='Peach Pie beverage')
+          .tab-contents
+            h2 Peach
+            p Nothing says true Americana like Apple Pie.
+        .tab#flavor-strawberry
+          img.product-image.product-strawberry(src='/images/strawberry.png', alt='Strawberry Pie beverage')
+          .tab-contents
+            h2 Strawberry
             p Nothing says true Americana like Apple Pie.
 
       .flavors-background
