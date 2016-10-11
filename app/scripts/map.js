@@ -1,6 +1,24 @@
-/*global $:false, google:false*/
-(function(exports, document) {
+/*global $:false, google:false, fetch:false*/
+(function(exports, document, fetch) {
   'use strict';
+  
+  var query = [
+    'query {',
+      // customize the zip based on what the user is looking at
+      'locations(brand:GREAT_AMERICA, zip:280336) {',
+        // all the fields we care about for our UI
+        'name street city state zip lat long distance',
+      '}',
+    '}',
+  ];
+  fetch('http://stout-brand-finder.herokuapp.com/graphql?query=' + encodeURIComponent(query.join('')))
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+    .then(data => exports[MAIN](data))
+    .catch(err => console.log(err));
 
   var DEFAULT_LAT_LONG = [35.8278, -78.6421]; // Raleigh, NC
   var MAIN = '_buildThatMap'; // main func. called when google maps js loads
@@ -173,5 +191,5 @@
   exports[MAIN] = initialize;
   exports[SETUP] = setup;
 
-})(window, document);
+})(window, document, fetch);
 

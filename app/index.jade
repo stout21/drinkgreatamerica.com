@@ -22,13 +22,6 @@ html
         };
       })(window,document,'script');
 
-      (function(w,z,s) {
-        s=w._s('scripts/locations.js');
-        w.__jsonp = function a(r) {
-          (z = w['setupFinder']) && !z ? setTimeout(function() { a(data) }) : (delete w.__jsonp, s.parentNode.removeChild(s), z(r));
-        };
-      })(window);
-
   body.age-not-verified
     //[if lt IE 10]
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -111,6 +104,8 @@ html
 
     // build:js(app) scripts/main.js
     script(src="bower_components/fastclick/lib/fastclick.js")
+    script(src="bower_components/es6-promise/es6-promise.js")
+    script(src="bower_components/fetch/fetch.js")
     script(src="scripts/polyfills.js")
     script(src="scripts/main.js")
     script(src="scripts/map.js")
