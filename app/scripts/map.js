@@ -11,10 +11,12 @@
       '}',
     '}',
   ];
-  fetch('http://stout-brand-finder.herokuapp.com/graphql?query=' + encodeURIComponent(query.join('')))
+  var protocol = location.protocol !== 'file:' ? location.protocol : 'http:';
+  fetch(location + '//stout-brand-finder.herokuapp.com/graphql?query=' + encodeURIComponent(query.join('')))
     .then(resp => resp.json())
     .then(data => {
       console.log(data);
+      setup(data.data.locations);
       return data;
     })
     .then(data => exports[MAIN](data))
@@ -49,7 +51,7 @@
         return [
           /*jshint ignore:start*/
           '<div class="location" data-id="', loc._id , '">',
-            '<h3 class="location-store">', loc.store, '</h3>',
+            '<h3 class="location-store">', loc.name, '</h3>',
             '<span class="location-address">', loc.address, '</span>',
             '<span class="location-city">', loc.city, '</span>, ',
             '<span class="location-state">', loc.state, '</span> ',
@@ -69,7 +71,7 @@
   }
 
   function MapManager(locations) {
-    //console.log('Creating new MapManager. %o', locations);
+    console.log('Creating new MapManager. %o', locations);
 
     this._template = {};
     this._locations = locations;
@@ -129,12 +131,12 @@
       var keys = 'store address city state zip'.split(' ');
 
       // TODO: Maybe make this smarter
-      this.locations = this._locations.filter(function(location) {
+      this.locations = this._locations; /*.filter(function(location) {
         var i = keys.length, prop;
         while (i--)
           if ((prop = location[keys[i]]) && prop.match(query))
             return location;
-      });// TODO .sort() by relevance;
+      });*/ // TODO .sort() by relevance;
 
       // Sync up those markers
       this._locations.forEach(function(location, i) {
